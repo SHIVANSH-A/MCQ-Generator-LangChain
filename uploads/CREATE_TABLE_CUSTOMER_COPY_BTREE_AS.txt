@@ -1,0 +1,77 @@
+CREATE TABLE CUSTOMER_COPY_BTREE AS (SELECT * FROM sh.customers)
+
+1)
+CREATE INDEX NORMAL_CUST_GENDERIDX ON CUSTOMER_COPY_BTREE(cust_gender);
+CREATE INDEX NORMAL_CUST_YIDX ON CUSTOMER_COPY_BTREE(cust_year_of_birth);
+CREATE INDEX NORMAL_CUST_LNIDX ON CUSTOMER_COPY_BTREE(cust_last_name);
+CREATE INDEX NORMAL_CUST_ADDIDX ON CUSTOMER_COPY_BTREE(cust_street_address);
+
+2)
+CREATE TABLE CUSTOMER_COPY_BITMAP AS (SELECT * FROM sh.customers)
+CREATE bitmap INDEX NORMAL_CUST_GENDERBIDX ON CUSTOMER_COPY_BITMAP(cust_gender);
+CREATE bitmap INDEX NORMAL_CUST_YBIDX ON CUSTOMER_COPY_BITMAP(cust_year_of_birth);
+CREATE bitmap INDEX NORMAL_CUST_LNBIDX ON CUSTOMER_COPY_BITMAP(cust_last_name);
+CREATE bitmap INDEX NORMAL_CUST_ADDBIDX ON CUSTOMER_COPY_BITMAP(cust_street_address);
+
+3)
+select substr(segment_name,1,30) segment_name, bytes/1024/1024 "Size in MB"
+  from user_segments
+  where segment_name in ('CUSTOMER_COPY_BTREE','CUSTOMER_COPY_BITMAP');
+
+select substr(segment_name,1,30) segment_name, bytes/1024/1024 "Size in MB"
+  from user_segments
+  where segment_name in ('NORMAL_CUST_GENDERIDX','NORMAL_CUST_YIDX','NORMAL_CUST_LNIDX','NORMAL_CUST_ADDIDX');
+
+select substr(segment_name,1,30) segment_name, bytes/1024/1024 "Size in MB"
+  from user_segments
+  where segment_name in ('NORMAL_CUST_GENDERBIDX','NORMAL_CUST_YBIDX','NORMAL_CUST_LNBIDX','NORMAL_CUST_ADDBIDX');
+
+
+select substr(segment_name,1,30) segment_name, bytes/1024/1024 "Size in MB"
+  from user_segments
+  where segment_name in ('TEST_NORMAL','NORMAL_EMPNO_IDX');
+select index_name, clustering_factor from user_indexes where index_name='NORMAL_EMPNO_IDX';
+
+4)
+SELECT cust_gender,cust_year_of_birth,cust_last_name,cust_street_address 
+FROM CUSTOMER_COPY_BTREE
+WHERE cust_year_of_birth=1949;
+
+SELECT cust_gender,cust_year_of_birth,cust_last_name,cust_street_address 
+FROM CUSTOMER_COPY_BITMAP
+WHERE cust_year_of_birth=1949;
+
+LINESIZE = 700
+PAGESIZE = 700
+
+
+5)CREATE INDEX cust_id_btree ON customer_copy_btree(cust_id);
+CREATE BITMAP INDEX cust_id_bitmap ON CUSTOMER_COPY_BITMAP(cust_id);
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_id NUMBER;
+    v_yob NUMBER;
+BEGIN
+    FOR i IN 1..500 LOOP
+        v_id := ROUND(DBMS_RANDOM.VALUE(1, 1000)); 
+        v_yob := ROUND(DBMS_RANDOM.VALUE(1950, 2005)); 
+
+        UPDATE CUSTOMER_COPY_BITMAP 
+        SET cust_year_of_birth = v_yob 
+        WHERE cust_id = v_id;
+    END LOOP;
+    COMMIT;
+END;
+/
+ 6)CREATE TABLE customers_bijx_test_bitmap AS (SELECT * FROM sh.customers);
+CREATE TABLE sales_bijx_test_bitmap AS (SELECT * FROM sh.customers);
+
+a)
+
+
+
+
+

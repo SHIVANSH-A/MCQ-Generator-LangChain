@@ -1,0 +1,56 @@
+Concept Learning - problem of searching through a
+predefined space of potential hypotheses for the hypothesis that
+best fits the training examples.
+
+Concept Learning As Search
+• Concept learning can be viewed as the task of searching through a large
+space of hypotheses implicitly defined by the hypothesis representation.
+• The goal of this search is to find the hypothesis that best fits the training
+examples.
+
+hypothesis space has a general-to-specific ordering of hypotheses.
+ hj is more_general_than_or_equal_to hk (written hj≥g hk) if and only if 
+( forall x in X) [(hk(x) = 1) -> (h_{j}(x) = 1)]
+
+The Inductive Learning Hypothesis - Any hypothesis found to
+approximate the target function well over a sufficiently large set of
+training examples will also approximate the target function well over
+other unobserved examples.
+
+The version space, VSH.D, with respect to hypothesis space H and training examples D, is the subset of hypotheses from H consistent with all training examples in D. 
+VSH.D = {h ∈ H|Consistent(h, D)}
+
+Every member of the version space lies between these boundaries
+VSH.D = {h ∈ Η|(∃s ∈ S)( ∃g ∈ G)(g ≥ h≥ s)}
+
+Inductive(bias -> does not onsider all types of training examples)
+Inductive ->examples to rules
+Inductive Leap: A learner should be able to generalize training data
+using prior assumptions in order to classify unseen instances.
+
+The generalization is known as inductive leap and our prior
+assumptions are the inductive bias of the learner.
+
+
+
+CANDIDATE Eliminati algo
+SP - positi will change specific (but look gor g first)
+
+
+Decision tree
+1)Calculate IG for target attribute
+IG= -P/P+N LOG(P/P+N) -N/P+N LOG(N/P+N)
+P/P+N = Prob. of P
+N/P+N = Prob. of N
+
+2)Calcute IG for nontarget attr
+
+E = IG X Prob(total P/P+N)
+
+Specific attri.
+IG = -P/P+N LOG(P/P+N) -N/P+N LOG(N/P+N)
+P/P+N = Prob. of P (attribute 1)
+N/P+N = Prob. of N (attribute 2)
+
+
+IG = IG - ENTROPY(E=E1+E2+E3)

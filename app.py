@@ -57,9 +57,10 @@ def Question_mcqs_generator(input_text, num_questions):
 
 def save_mcqs_to_file(mcqs, filename):
     results_path = os.path.join(app.config['RESULTS_FOLDER'], filename)
-    with open(results_path, 'w') as f:
+    with open(results_path, 'w', encoding='utf-8') as f:  # Use UTF-8 encoding
         f.write(mcqs)
     return results_path
+
 
 def create_pdf(mcqs, filename):
     pdf = FPDF()
