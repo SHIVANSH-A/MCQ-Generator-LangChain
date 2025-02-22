@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQs Generator</title>
     <style>
-        /* Updated Color Palette */
 /* Updated Color Palette */
 :root {
-    --primary-color: #FFDAB3;
-    --secondary-color: #C8AAAA;
-    --accent-color: #9F8383;
-    --light-color: #574964;
-    --text-color: #333;
-    --button-color: #9F8383;
-    --button-hover: #C8AAAA;
-    --border-radius: 12px;
+    --primary-color: #000000; /* Black */
+    --secondary-color: #FFFFFF; /* White */
+    --accent-color: #007BFF; /* Blue */
+    --text-color: #222222; /* Dark Gray */
+    --border-color: #CCCCCC; /* Light Gray */
+    --button-hover: #0056b3; /* Darker Blue */
+    --border-radius: 8px;
 }
 
 /* Global Styles */
@@ -23,52 +21,31 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* White */
     color: var(--text-color);
 }
 
 /* Navbar */
 .navbar {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Black */
     padding: 15px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--secondary-color); /* White */
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
 .navbar h2 {
     margin: 0;
     font-size: 1.5em;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar ul li {
-    display: inline;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
-}
-
-.navbar ul li a:hover {
-    text-decoration: underline;
+    color: var(--accent-color); /* Blue */
 }
 
 /* Hero Section */
@@ -79,34 +56,29 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-    color: white;
+    background: var(--secondary-color); /* White */
+    color: var(--text-color);
     padding: 20px;
 }
 
 .hero .container {
-    max-width: 500px;
-    /* background: var(--light-color); */
-    padding: 30px;
-    padding-right:50px ;
+    max-width: 450px;
+    padding: 25px;
     border-radius: var(--border-radius);
-    /* box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); */
+    background: var(--secondary-color); /* White */
     text-align: center;
-    transition: 0.3s ease-in-out;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    border-top: 4px solid var(--accent-color); /* Blue */
 }
 
-.hero .container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-    font-size: 2em;
+h1 {
+    font-size: 1.8em;
     margin-bottom: 20px;
+    color: var(--primary-color); /* Black */
 }
 
 /* Form Styles */
@@ -119,7 +91,7 @@ form {
 
 .form-group {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -127,32 +99,34 @@ label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Black */
 }
 
 input[type="file"], input[type="number"] {
     width: 100%;
-    padding: 12px;
-    border: 2px solid var(--accent-color);
+    padding: 10px;
+    border: 1px solid var(--border-color); /* Light Gray */
     border-radius: var(--border-radius);
     font-size: 1em;
-    background-color: white;
+    background-color: var(--secondary-color); /* White */
     transition: 0.3s ease-in-out;
     text-align: center;
+    color: var(--primary-color); /* Black */
 }
 
-input[type="file"]:focus, input[type="number"]:focus {
-    border-color: var(--primary-color);
+input:focus {
+    border-color: var(--accent-color); /* Blue */
     outline: none;
-    box-shadow: 0 0 8px var(--primary-color);
+    box-shadow: 0 0 6px var(--accent-color);
 }
 
+/* Button */
 button {
-    background: var(--button-color);
-    color: white;
+    background: var(--accent-color); /* Blue */
+    color: var(--secondary-color); /* White */
     border: none;
-    padding: 12px 20px;
-    font-size: 1.2em;
+    padding: 10px 16px;
+    font-size: 1em;
     border-radius: var(--border-radius);
     cursor: pointer;
     transition: 0.3s;
@@ -160,8 +134,9 @@ button {
 }
 
 button:hover {
-    background: var(--button-hover);
+    background: var(--button-hover); /* Darker Blue */
 }
+
 
     </style>
 </head>
